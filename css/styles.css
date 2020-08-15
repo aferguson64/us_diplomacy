@@ -1,0 +1,701 @@
+body {
+   margin: 0;
+   padding: 0;
+   font-family: helvetica,arial,sans-serif;
+   font-size: 14px;
+   background: linear-gradient(to bottom,#000 0,#999 100%);
+   background-repeat: no-repeat;
+   overflow: hidden;
+   min-height: 1000px;
+}
+
+nav {
+   background-color: #444444;
+   padding: 12px 15px;
+   color: white;
+   font-size: 20px;
+   font-weight: bold;
+}
+
+nav #navSubHdr {
+   color: white;
+   font-size: 14px;
+   font-weight: normal;
+   margin-top: 5px;
+}
+
+nav #zoomControls {
+   float: right;
+   margin: 15px 0 0 0;
+}
+
+nav #zoomControls a {
+   margin-right: 20px;
+   color: white;
+   text-decoration: none;
+   font-size: 15px;
+   border-bottom: 1px dotted white;
+   font-weight: normal;
+}
+
+nav #zoomControls a:hover {
+   border-bottom: 1px solid white;
+}
+
+#profile_container {
+   width: 300px;
+   background: #1b1b1b;
+   overflow-x: hidden;
+   overflow-y: auto;
+   position: absolute;
+   top: 95px;
+   right: 30px;
+   padding: 5px;
+   height: calc(100% - 130px);
+   opacity: 0.95;
+  display: none;
+}
+
+#embassy_list_container .ambName {
+   display: inline-block;
+   float: right;
+   color: #bbb;
+   width: 110px;
+}
+
+#embassy_list_container {
+   width: 240px;
+   overflow: hidden;
+   position: absolute;
+   top: 95px;
+   left: 15px;
+   padding: 5px;
+   height: calc(100% - 130px);
+}
+
+#countryWrapper, #issuesWrapper {
+   background-color: #1b1b1b;
+   opacity: 0.9;
+   border-radius: 6px;
+   padding-bottom: 5px;
+}
+
+#countryWrapper {
+   margin-bottom: 30px;
+   height: 364px !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+   text-align: center;
+}
+
+table.dataTable tbody tr {
+   background-color: transparent;
+}
+
+table.dataTable tbody tr:hover {
+   background-color: gray;
+   cursor: pointer;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+   padding: 6px 18px;
+   border-bottom: 1px solid #ededed;
+}
+
+.dataTables_empty {
+   padding: 15px 0 !important;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+   color: white;
+}
+
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+   color: white;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+   padding: 4px 6px;
+}
+
+td.yearTD {
+   text-align: center;
+}
+
+.divHighlight {
+   background-color: crimson;
+   display: inline-block;
+}
+
+.dataTables_wrapper .dataTables_filter {
+   float: none;
+}
+
+#profile_hdr, #profile_name {
+   color: white;
+   text-align: center;
+   margin-bottom: 6px;
+}
+
+#profile_name {
+   font-size: 20px;
+   font-weight: bold;
+}
+
+#profile_photoWrapper {
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+   width: 100%;
+}
+
+img#profile_photo {
+   width: auto;
+   height: auto;
+   margin-bottom: 15px;
+   max-height: 200px;
+}
+
+#profile_history {
+   color: white;
+   margin: 0 10px 15px 10px;
+   line-height: 20px;
+}
+
+#profile_history ul {
+   padding: 0;
+   margin: 5px 0 10px 0;
+}
+
+#profile_history ul li {
+   padding: 0 0 4px 0;
+   margin: 0 0 0 1em;
+}
+
+#profile_misc {
+   color: white;
+   margin-bottom: 1em;
+}
+
+.profileOrg {
+   margin: 4px 0;
+}
+
+.otherName {
+   font-weight: bold;
+}
+
+hr {
+   margin: 15px 0;
+}
+
+img#issueImg {
+   width: 100%;
+   height: auto;
+}
+
+#othersHdr {
+   text-align: center;
+   margin-bottom: 10px;
+}
+
+.otherName a {
+   color: white;
+   font-size: 18px;
+   line-height: 30px;
+   text-decoration: underline;
+}
+
+.otherName a:hover {
+   text-decoration: none;
+}
+
+#amb_details {
+   width: 100%;
+}
+
+ul#issuesList {
+   padding: 0;
+   margin: 0;
+   color: white;
+   font-size: 14px;
+}
+
+ul#issuesList li {
+   list-style: none;
+   padding: 6px 10px;
+   margin: 0;
+   color: white;
+}
+
+ul#issuesList li:hover {
+   background-color: #727272;
+}
+
+ul#issuesList a {
+   text-decoration: none;
+}
+
+#issueTitle {
+   color: white;
+   font-size: 22px;
+   text-align: center;
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+#issueListContainer {
+   overflow-y: auto;
+   height: 250px;
+   scrollbar-width: thin;
+   scrollbar-color: #858585 transparent;
+}
+
+.dataTables_scrollBody {
+   scrollbar-width: thin;
+   scrollbar-color: #858585 transparent;
+}
+
+#issuesHdr {
+   /* margin-top: 30px; */
+}
+
+#issueDesc {
+   padding: 15px 10px;
+   color: white;
+   font-size: 15px;
+   line-height: 20px;
+}
+
+#mapServiceBlock {
+   text-align: center;
+   margin-bottom: 15px;
+}
+
+#mapServiceBlock a {
+   color: white;
+   text-decoration: underline;
+}
+
+#mapServiceBlock a:hover {
+   text-decoration: none;
+}
+
+#embassy_details {
+   color: white;
+   padding: 15px 15px 0 15px;
+   margin-bottom: 0;
+}
+
+ul#vector_list {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   clear: both;
+}
+
+ul#vector_list li {
+   padding: 1px 4px 1px 4px;
+   margin: 0;
+   color: #bbb;
+   cursor: pointer;
+   font-size: 12px;
+}
+
+ul#vector_list li {
+   margin-bottom: 5px;
+   cursor: pointer;
+}
+
+ul#vector_list label {
+   cursor: pointer;
+}
+
+
+#vectorHdr {
+   color: white;
+   font-weight: bold;
+   float: left;
+}
+
+svg.XXemptyBox path {
+   fill: white;
+}
+
+#countryStatsWrapper {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   position: fixed;
+   bottom: 0;
+   pointer-events: none;
+   display: none;
+}
+
+#countryStats {
+   padding: 15px;
+   margin-left: auto;
+   margin-right: auto;
+   background-color: #1b1b1b;
+   opacity: 0.9;
+   color: white;
+   outline: 1px solid gray;
+   max-width: 50%;
+   width: 900px;
+}
+
+#countryName {
+   font-size: 20px;
+   font-weight: bold;
+   margin-bottom: 10px;
+}
+
+ul.countryStatsList {
+   list-style: none;
+   column-count: 3;
+   column-gap: 16px;
+   margin: 0;
+   padding: 0;
+}
+
+ul.countryStatsList li {
+   margin: 0;
+   padding: 0 0 8px 0;
+   font-size: 12px;
+}
+
+#sources {
+   color: white;
+   margin: 0 1em 40px 1em;
+   width: 100%;
+}
+
+#sources img {
+   height: 35px;
+   width: auto;
+}
+
+#sources a:focus {
+   outline: 1px dotted white;
+}
+
+#sources .logoBlock {
+   display: inline-block;
+   margin-right: 10px;
+}
+
+#sortWrapper {
+   display: flex;
+   width: 100%;
+}
+
+#sortWrapper .sortHdr {
+   height: 10px;
+   background-color: gray;
+   width: 25%;
+   margin-bottom: 4px;
+   cursor: pointer;
+}
+
+#sortWrapper .sortHdr:first-of-type {
+   margin-right: 4px;
+   width: 75%;
+}
+
+.allBlock {
+   float: right;
+   color: white;
+   font-size: 10px;
+}
+
+.allBlock a {
+   color: #bbb;
+   text-decoration: none;
+   text-transform: lowercase;
+}
+
+.allBlock a:hover {
+   text-decoration: underline;
+}
+
+#team {
+   font-size: 12px;
+   font-weight: normal;
+   color: #bbb;
+   margin: 20px 0 40px 0;
+   width: 255px;
+}
+
+#flagsWrapper {
+   display: inline-block;
+   width: 100%;
+   color: white;
+   display: flex;
+}
+
+#flagLeft {
+   display: inline-block;
+   float: left;
+}
+
+#flagRight {
+   display: inline-block;
+   float: right;
+}
+
+#flagHdr {
+   width: 100%;
+   text-align: center;
+   margin-top: 4px;
+}
+
+#embCountry {
+   font-size: 20px;
+   margin-top: 5px;
+}
+
+ul#embassy_event_list {
+   margin: 0;
+}
+
+ul#embassy_event_list li {
+   padding-bottom: 4px;
+}
+
+#flagsWrapper img {
+   height: 25px;
+   width: auto;
+}
+
+.hdr2 {
+   color: white;
+   font-weight: bold;
+   font-size: 18px;
+   margin-bottom: 10px;
+   text-align: center;
+   padding-top: 10px;
+}
+
+
+
+
+
+/* SVG MAP */
+
+svg, .panzoom {
+   display: block;
+   width: 100%;
+   height: 900px;
+}
+
+.panzoom {
+   cursor: all-scroll;
+}
+
+.land {
+    cursor: pointer;
+	fill: #219df1;
+	fill-opacity: 1;
+	stroke:white;
+	stroke-opacity: 1;
+	stroke-width:0.5;
+}
+      
+.XXland:hover {
+    opacity:0.8;
+    fill: #283b4a;
+}
+
+nav a {
+   color: white;
+   text-underline: none;
+}
+
+g#gl path {	/* Greenland */
+   cursor: all-scroll !important;
+   opacity: 0.2 !important;
+}
+
+g#ir path, path#kp, path#bt {	/* Iran, North Korea, Bhutan */
+   cursor: all-scroll !important;
+   opacity: 0.6 !important;
+}
+
+g#us, g#us path {	/* USA */
+   cursor: all-scroll !important;
+   fill: #0F2C64 !important;
+}
+
+
+/* overlay at start */
+.mfp-fade.mfp-bg {
+  opacity: 0;
+
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+/* overlay animate in */
+.mfp-fade.mfp-bg.mfp-ready {
+  opacity: 0.8;
+}
+/* overlay animate out */
+.mfp-fade.mfp-bg.mfp-removing {
+  opacity: 0;
+}
+
+/* content at start */
+.mfp-fade.mfp-wrap .mfp-content {
+  opacity: 0;
+
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+/* content animate it */
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+  opacity: 1;
+}
+/* content animate out */
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+  opacity: 0;
+}
+
+
+/* 
+ * Below are Cascading Style Sheet (CSS) definitions in use in this file,
+ * which allow easily changing how countries are displayed.
+ * The styles are applied in the order in which they are defined (and re-defined) here in the preamble.
+ */
+
+/*
+ * Circles around small countries and territories
+ * Change opacity to 1 to display all circles
+ */
+.circlexx {
+	opacity: 0;
+	fill: transparent;
+	stroke: crimson;
+	stroke-width: 0.5;
+}
+
+/*
+ * Smaller circles around subnational territories: Australian external territories, Chinese SARs, Dutch special municipalities, and French DOMs (overseas regions/departments) [but not French COMs (overseas collectivities)]
+ * Change opacity to 1 to display all circles
+ */
+.subxx {
+	opacity: 0;
+	fill: #eeeeee;
+	stroke: #000000;
+	stroke-width: 0.3;
+}
+
+
+/*
+ * Land
+ * (all land, as opposed to water, should belong to this class; in order to modify the coastline for land pieces with no borders on them a special class "coastxx" has been added below)
+ */
+.landxx {
+	fill: white;
+	stroke: gray;
+	stroke-width: 0.5;
+	fill-rule: evenodd;
+	cursor: pointer;
+}
+
+/*
+ * Styles for coastlines of islands and continents with no borders on them
+ * (all of them should also belong to the class "landxx" - to allow for all land to be modified at once by refining "landxx" style's definition further down)
+ */
+.coastxx {
+	stroke-width: 0.2;
+}
+
+
+/*
+ * Styles for territories without permanent population (the largest of which is Antarctica)
+ * Change opacity to 0 to hide all territories
+ */
+.antxx {
+	opacity: 0;
+	fill: #eeeeee;
+}
+
+/*
+ * Circles around small countries without permanent population
+ * Change opacity to 1 to display all circles
+ */
+.noxx {
+	opacity: 0;
+	fill: #eeeeee;
+	stroke: #000000;
+	stroke-width: 0.5;
+}
+
+
+/*
+ * Styles for territories with limited or no recognition
+ * (all of them - including Taiwan - are overlays (i.e. duplicate layers) over their "host" countries, and so not showing them doesn't leave any gaps on the map)
+ * Change opacity to 1 to display all territories
+ */
+.limitxx
+{
+	opacity: 0;
+	fill: #eeeeee;
+	stroke: #ffffff;
+	stroke-width: 0.2;
+	fill-rule: evenodd;
+}
+
+/*
+ * Smaller circles around small territories with limited or no recognition
+ * Change opacity to 1 to display all circles
+ */
+.unxx {
+	opacity: 0;
+	fill: #eeeeee;
+	stroke: #000000;
+	stroke-width: 0.3;
+}
+
+
+/*
+ * Oceans, seas, and large lakes
+ */
+.oceanxx {
+	opacity: 1;
+	fill: transparent;
+	stroke: transparent;
+	stroke-width: 0.5;
+}
+
+/*
+ * Reserved class names:
+ * .eu - for members of European Union
+ * .eaeu - for members of Eurasian Economic Union
+ */
+
+
+/*
+ * Additional style rules
+ *
+ * The following are examples of colouring countries.
+ * These can be substituted with custom styles to colour the countries on the map.
+ *
+ * Colour a few countries:
+ *
+ * .gb, .au, .nc
+ * {
+ * 	fill: #ff0000;
+ * }
+ *
+ * Colour a few small-country circles (along with the countries):
+ *
+ * .ms, .ky
+ * {
+ * 	opacity: 1;
+ * 	fill: #ff0000;
+ * }
+ *
+ */
