@@ -7,6 +7,8 @@ United States Diplomacy Interactive Map
 
 An interactive world map with U.S. diplomacy metadata.
 
+<a href="http://www.johnandrewferguson.com/us%5Fambassadors/" target="_blank">View the demo</a>
+
 ## Getting Started
 
 ```
