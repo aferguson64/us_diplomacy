@@ -27,7 +27,63 @@
 
 <style>
 
+#profile_container {
+   display: block;
+}
 
+#welcome {
+   display: block;
+   color: white;
+   padding: 10px;
+   line-height: 22px;
+   font-size: 16px;
+}
+
+ul#welcomeList {
+   margin: 0 0 0 14px;
+   padding: 0;
+}
+
+ul#welcomeList li {
+   margin: 0;
+   padding: 0 0 8px 0;
+}
+
+ul#welcomeList li:last-of-type {
+   padding-bottom: 0;
+}
+
+#amb_details {
+   display: none;
+}
+
+#secName {
+   font-size: 18px;
+   text-align: center;
+   font-weight: bold;
+}
+
+#secTitle {
+   text-align: center;
+   font-size: 16px;
+}
+
+#welcome img {
+   width: 100%;
+   height: auto !important;
+   max-height: 1000px;
+   margin-top: 10px;
+}
+
+svg g:first-of-type {
+   transition-duration: 1s;
+}
+
+#embassy_location {
+   text-align: center;
+   margin-top: 5px;
+   color: white;
+}
 
 </style>
 
@@ -65,13 +121,13 @@ function getEmbassyDetails(inCountry) {
 		tmpstr = tmpstr + "<li>" + filteredList[i][1] + ":  " + filteredList[i][2] + "</li>";
 	}
 	tmpstr = "<ul id='embassy_event_list'>" + tmpstr + "</ul>";
-	
 	$("#embassy_details").html(tmpstr);
 	$("#profile_container").css("display","inline-block").scrollTop(0);
 }
 
 // Retrieve global issue details
 function getIssue (inIndex, inIssue) {
+	$("#welcome").css("display","none");
 	$("#map circle").css("opacity","0");
 	$("#map .landxx, #map .landxx path").css("fill","white");
 
@@ -153,6 +209,21 @@ function getIssue (inIndex, inIssue) {
 
 <div id="profile_container">
 
+	<div id="welcome">
+		Welcome!
+		<p>Here you will discover the people, history, issues, and current events of United States diplomacy.</p>
+		<ul id="welcomeList">
+		<li>Select a COUNTRY or MISSION in the left column</li>
+		<li>Click in the map</li>
+		<li>Select a GLOBAL ISSUE</li>
+		</ul>
+		<p>Our ambassadors and their teams work hard to represent us in a rapidly changing world.</p>
+		<div id="secName">Mike Pompeo</div>
+		<div id="secTitle">U.S. Secretary of State</div>
+		<img id="portrait" src="portraits/pompeo.jpg" alt="" />		
+	</div>
+
+
 	<div id="amb_details">
 		<div id="flagsWrapper">
 			<div id="flagLeft"><img src="flags/us.svg" alt="" /></div>
@@ -160,6 +231,7 @@ function getIssue (inIndex, inIssue) {
 			<div id="flagRight"><!--a href="" target="_blank" title="Visit embassy website"--><img src="images/clear.gif" alt="" /><!--/a--></div>
 		</div>	
 		<div id="embassy_details"></div>
+		<div id="embassy_location"></div>
 		<hr>
 		<div id="profile_hdr"></div>
 		<div id="profile_name"></div>
@@ -3310,8 +3382,19 @@ function getIssue (inIndex, inIssue) {
 
 <script id="rendered-js">
 	var panZoomMap = svgPanZoom('#map', {
-	  controlIconsEnabled: false });
-	panZoomMap.zoom(0.8);
+		controlIconsEnabled: false,
+		fit: false,
+		center: false,
+		beforeZoom: function(){
+			$("svg g:eq(0)").css("transition-duration","0.1s");
+		},
+		beforePan: function(){
+			$("svg g:eq(0)").css("transition-duration","0.1s");
+		}
+	  });
+	$("svg g:eq(0)").attr("transform","matrix(0.5, 0, 0, 0.5, 121, 95)").attr("style","transform:matrix(0.5, 0, 0, 0.5, 121, 95)");
+	panZoomMap.updateBBox();
+	// panZoomMap.zoom(0.5);
 
 	// Build table of years and countries
 	var tblHdr = "<thead><tr><th>Year</th><th>Country</th></tr></thead>";
@@ -3365,25 +3448,32 @@ function getIssue (inIndex, inIssue) {
 	// click country in left column
 	var tmpCountry, tmpIndex, tmpName;
 	$("ul#vector_list table tbody tr").click(function() {
+		$("svg g:eq(0)").css("transition-duration","2s");
 		tmpCountry = $(this).attr("id");
+		$("#welcome").css("display","none");
 		
 		tmpIndex = parseInt($(this).attr("dataIndex"));
 		$("#map circle").css("opacity","0");
 		$("#map .landxx, #map .landxx path").css("fill","white");
 		$("svg#map #" + tmpCountry + ",svg#map #" + tmpCountry + " path").css("fill","crimson");
 		
-		// ZOOM TO COUNTRY	
-		zoomToPathWithID(tmpCountry);
-		
 		// get profile info
 		var tmpCountryName = getDataAtom(tmpCountry,"country");
 		var tmpAmbName = getDataAtom(tmpCountry,"amb");
 		var tmpTwitter;
 		
+		if (tmpCountry == "us") {
+			tmpCountryName = "United States";
+		}
+		
+		// ZOOM TO COUNTRY
+		zoomToPathWithID(tmpCountryName);
+		
 		if (dataArray[tmpIndex][1] == '{mission}') {		// display mission details
 			$("#amb_details #flagsWrapper, #amb_details #embassy_details, #amb_details hr").css("display","none");
 			$("#profile_hdr").text("");
 			$("#profile_name").text(dataArray[tmpIndex][0]);
+			$("#embassy_location").text("").css("display","none");
 			$("img#profile_photo").attr("src","images/dept_of_state.png");
 			tmpTwitter = dataArray[tmpIndex][4];
 
@@ -3400,6 +3490,13 @@ function getIssue (inIndex, inIssue) {
 		} else {	// display ambassador details
 			$("#amb_details #flagsWrapper").css("display","flex");
 			$("#amb_details #embassy_details, #amb_details hr").css("display","block");
+			
+			if (dataArray[tmpIndex][6] == "") {
+				$("#embassy_location").text("").css("display","none");
+			} else {
+				$("#embassy_location").text("U.S. Embassy in " + dataArray[tmpIndex][6]).css("display","block");
+			}
+			
 			$("#profile_hdr").text("U.S. Ambassador to " + tmpCountryName);
 			$("#profile_name").text(tmpAmbName);
 			$("#profile_history").text("");
@@ -3440,49 +3537,61 @@ function getIssue (inIndex, inIssue) {
 	// click country in map
 	$("svg#map .landxx").click(function() {
 		tmpIndex = countryCodesArray.indexOf($(this).attr("id"));
-		tmpCountry = countryCodesArray[tmpIndex];
 		
-		if (tmpIndex > -1) {
-			$("#map circle").css("opacity","0");
-			$("#map .landxx, #map .landxx path").css("fill","white");
-			$("svg#map #" + tmpCountry + ",svg#map #" + tmpCountry + " path").css("fill","crimson");
+		if (tmpIndex == "us") {
+			zoomIt('reset');
+		} else {
+			$("#welcome").css("display","none");
+			tmpCountry = countryCodesArray[tmpIndex];
 			
-			// get profile info
-			var tmpCountryName = getDataAtom(tmpCountry,"country");
-			var tmpAmbName = getDataAtom(tmpCountry,"amb");
-			$("#profile_hdr").text("U.S. Ambassador to " + tmpCountryName);
-			$("#profile_name").text(tmpAmbName);
-			
-			var tmpPortrait = getDataAtom(tmpCountry,"photo");
-			if (tmpPortrait == "" || tmpAmbName == "Vacant") {
-				$("img#profile_photo").attr("src","images/dept_of_state.png");
-			} else if (tmpPortrait != "") {
-				$("img#profile_photo").attr("src","portraits/" + (tmpCountryName).replace(/ /g,"_") + "_" + tmpPortrait + ".jpg");
-			} else {
-				$("img#profile_photo").attr("src","images/clear.gif");
-			}
-			
-			$("#issue_details").css("display","none");
-			$("#amb_details").css("display","block");
-			
-			getEmbassyDetails(tmpCountryName);
-			
-			$("#profile_twitter").css("display","none");
-			var tmpTwitter = getDataAtom(tmpCountry,"twitter");
-			if (tmpTwitter != "") {
-				$("#profile_twitter").html("<a class='twitter-timeline' href='https://twitter.com/" + tmpTwitter + "'>Tweets by @" + tmpTwitter + "</a>");
-				twttr.widgets.load();
-				setTimeout(function(){ $("#profile_twitter").css("display","block"); }, 750);
-			} else {
-				$("#profile_twitter").text("");
-			}
-			
-			tmpstr = countryCodesArray[tmpIndex];
-			$("#flagsWrapper #flagRight img").attr("src","flags/" + tmpstr + ".svg");
-			$("#flagsWrapper #embCountry").text(tmpCountryName);
-			
-			if ($("#map circle." + tmpstr).length > 0) {
-				$("#map circle." + tmpstr).css("opacity","1");
+			if (tmpIndex > -1) {
+				$("#map circle").css("opacity","0");
+				$("#map .landxx, #map .landxx path").css("fill","white");
+				$("svg#map #" + tmpCountry + ",svg#map #" + tmpCountry + " path").css("fill","crimson");
+				
+				// get profile info
+				var tmpCountryName = getDataAtom(tmpCountry,"country");
+				var tmpAmbName = getDataAtom(tmpCountry,"amb");
+				$("#profile_hdr").text("U.S. Ambassador to " + tmpCountryName);
+				$("#profile_name").text(tmpAmbName);
+				
+				if (dataArray[tmpIndex][6] == "") {
+					$("#embassy_location").text("").css("display","none");
+				} else {
+					$("#embassy_location").text("U.S. Embassy in " + dataArray[tmpIndex][6]).css("display","block");
+				}
+				
+				var tmpPortrait = getDataAtom(tmpCountry,"photo");
+				if (tmpPortrait == "" || tmpAmbName == "Vacant") {
+					$("img#profile_photo").attr("src","images/dept_of_state.png");
+				} else if (tmpPortrait != "") {
+					$("img#profile_photo").attr("src","portraits/" + (tmpCountryName).replace(/ /g,"_") + "_" + tmpPortrait + ".jpg");
+				} else {
+					$("img#profile_photo").attr("src","images/clear.gif");
+				}
+				
+				$("#issue_details").css("display","none");
+				$("#amb_details").css("display","block");
+				
+				getEmbassyDetails(tmpCountryName);
+				
+				$("#profile_twitter").css("display","none");
+				var tmpTwitter = getDataAtom(tmpCountry,"twitter");
+				if (tmpTwitter != "") {
+					$("#profile_twitter").html("<a class='twitter-timeline' href='https://twitter.com/" + tmpTwitter + "'>Tweets by @" + tmpTwitter + "</a>");
+					twttr.widgets.load();
+					setTimeout(function(){ $("#profile_twitter").css("display","block"); }, 750);
+				} else {
+					$("#profile_twitter").text("");
+				}
+				
+				tmpstr = countryCodesArray[tmpIndex];
+				$("#flagsWrapper #flagRight img").attr("src","flags/" + tmpstr + ".svg");
+				$("#flagsWrapper #embCountry").text(tmpCountryName);
+				
+				if ($("#map circle." + tmpstr).length > 0) {
+					$("#map circle." + tmpstr).css("opacity","1");
+				}
 			}
 		}
 	});
@@ -3490,53 +3599,30 @@ function getIssue (inIndex, inIssue) {
 
 	function zoomIt (inVal) {
 	   if (inVal == "in") {
+			$("svg g:eq(0)").css("transition-duration","0.1s");
 			panZoomMap.zoomIn();
 	   } else if (inVal == "out") {
+		$("svg g:eq(0)").css("transition-duration","0.1s");
 			panZoomMap.zoomOut();
-	   } else {
-			panZoomMap.resize();
-			panZoomMap.fit();
-			panZoomMap.center();
+	   } else {	// reset link is clicked
+			$("svg g:eq(0)").css("transition-duration","1s");
+			$("svg g:eq(0)").attr("transform","matrix(0.5, 0, 0, 0.5, 121, 95)").attr("style","transform:matrix(0.5, 0, 0, 0.5, 121, 95)");
+			panZoomMap.updateBBox();
+			$("#map circle").css("opacity","0");
+			$("#map .landxx, #map .landxx path").css("fill","white");
+			$("#amb_details, #issue_details").css("display","none");
+			$("#welcome").css("display","block");
 	   }
 	}
-
-	var smallCountriesArray = ["ad","ag","bb","bh","bn","cv","dm","fj","gd","jm","km","kn","lc","li","lu","me","mt","mu","mv","qa","sb","sg","sm","st","tl","tt","va","vc","vu"];
-	var largeCountriesArray = ["au","ca","cn","ru","us"];
 	
-	function zoomToPathWithID(id) {
-		panZoomMap.reset();
-		
-		var zoomLevel = 2;
-		if (largeCountriesArray.indexOf(id) > -1) {
-			zoomLevel = 1;
-		} else if (smallCountriesArray.indexOf(id) > -1) {
-			zoomLevel = 9;
+	function zoomToPathWithID(inCountry) {
+		var tmpstr = "";
+		for (i = 0; i < flyToArray.length; i++) {
+			if (flyToArray[i][0] == inCountry) {
+				$("svg g:eq(0)").attr("transform",flyToArray[i][1]).attr("style","transform:" + flyToArray[i][1]);
+				panZoomMap.updateBBox();
+			}
 		}
-		
-		var tmpId = id;
-		if (id == "fr") {
-			tmpId = "path2182";
-		} else if (id == "au") {
-			tmpId = "path3348";
-		} else if (id == "ru") {
-			tmpId = "path2924";
-		} else if (id == "nl") {
-			tmpId = "path6484";
-		} else if (id == "jp") {
-			tmpId = "path3510";
-		} else if (id == "no") {
-			tmpId = "path6794";
-		}
-
-		// Adjustments based on zooming
-		window.setTimeout(function(){
-			var tViewport = document.querySelector("g.svg-pan-zoom_viewport");
-			var tMatrix = tViewport.transform.baseVal.getItem(0).matrix;
-			var tBBox = $("path#" + tmpId + ", g#" + tmpId)[0].getBBox();
-			var tPoint = {x: (tBBox.x + tBBox.width / 2) * tMatrix.a + tMatrix.e, y: (tBBox.y + tBBox.height / 2) * tMatrix.d + tMatrix.f}
-
-			panZoomMap.zoomAtPoint(zoomLevel, tPoint);
-		}, 500);
 	}
 	
 </script>
