@@ -477,7 +477,63 @@ ul#embassy_event_list li {
    padding-top: 10px;
 }
 
+#profile_container {
+   display: block;
+}
 
+#welcome {
+   display: block;
+   color: white;
+   padding: 10px;
+   line-height: 22px;
+   font-size: 16px;
+}
+
+ul#welcomeList {
+   margin: 0 0 0 14px;
+   padding: 0;
+}
+
+ul#welcomeList li {
+   margin: 0;
+   padding: 0 0 8px 0;
+}
+
+ul#welcomeList li:last-of-type {
+   padding-bottom: 0;
+}
+
+#amb_details {
+   display: none;
+}
+
+#secName {
+   font-size: 18px;
+   text-align: center;
+   font-weight: bold;
+}
+
+#secTitle {
+   text-align: center;
+   font-size: 16px;
+}
+
+#welcome img {
+   width: 100%;
+   height: auto !important;
+   max-height: 1000px;
+   margin-top: 10px;
+}
+
+svg g:first-of-type {
+   transition-duration: 1s;
+}
+
+#embassy_location {
+   text-align: center;
+   margin-top: 5px;
+   color: white;
+}
 
 
 
@@ -502,11 +558,6 @@ svg, .panzoom {
 	stroke-width:0.5;
 }
       
-.XXland:hover {
-    opacity:0.8;
-    fill: #283b4a;
-}
-
 nav a {
    color: white;
    text-underline: none;
