@@ -25,68 +25,6 @@
 
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
-<style>
-
-#profile_container {
-   display: block;
-}
-
-#welcome {
-   display: block;
-   color: white;
-   padding: 10px;
-   line-height: 22px;
-   font-size: 16px;
-}
-
-ul#welcomeList {
-   margin: 0 0 0 14px;
-   padding: 0;
-}
-
-ul#welcomeList li {
-   margin: 0;
-   padding: 0 0 8px 0;
-}
-
-ul#welcomeList li:last-of-type {
-   padding-bottom: 0;
-}
-
-#amb_details {
-   display: none;
-}
-
-#secName {
-   font-size: 18px;
-   text-align: center;
-   font-weight: bold;
-}
-
-#secTitle {
-   text-align: center;
-   font-size: 16px;
-}
-
-#welcome img {
-   width: 100%;
-   height: auto !important;
-   max-height: 1000px;
-   margin-top: 10px;
-}
-
-svg g:first-of-type {
-   transition-duration: 1s;
-}
-
-#embassy_location {
-   text-align: center;
-   margin-top: 5px;
-   color: white;
-}
-
-</style>
-
 <script>
 
 // Retrieve a specific data element
@@ -127,6 +65,7 @@ function getEmbassyDetails(inCountry) {
 
 // Retrieve global issue details
 function getIssue (inIndex, inIssue) {
+	zoomIt("reset");
 	$("#welcome").css("display","none");
 	$("#map circle").css("opacity","0");
 	$("#map .landxx, #map .landxx path").css("fill","white");
@@ -3612,6 +3551,10 @@ function getIssue (inIndex, inIssue) {
 			$("#map .landxx, #map .landxx path").css("fill","white");
 			$("#amb_details, #issue_details").css("display","none");
 			$("#welcome").css("display","block");
+			
+			$("#ambTbl_filter label input").val("");
+			$("ul#vector_list table#ambTbl").dataTable().fnFilter('');
+			$("ul#vector_list .divHighlight").contents().unwrap();
 	   }
 	}
 	
