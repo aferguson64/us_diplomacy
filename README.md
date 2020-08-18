@@ -19,7 +19,7 @@ index.html
 ## Updating Content
 
 * All metadata is stored in the "data" directory ... in the file "diplomacy_data.js"
-* U.S. Ambassador photos are in the "portraits" directory. Study the filename structure. Filenames are in the format of [country]_[lastname].JPG
+* U.S. Ambassador photos are in the "portraits" directory. Study the filenames which are in the format of [country]_[lastname].JPG
 * Global Issue photos are in the "issues" directory
 
 ## Developed By
