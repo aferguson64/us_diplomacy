@@ -2,12 +2,12 @@
 United States Diplomacy Interactive Map
 
 <p align="left">
-     <a href="http://www.johnandrewferguson.com/us%5Fambassadors/"><img width="815" height="440" src="https://github.com/aferguson64/us_diplomacy/blob/master/images/thumbnail.jpg"></a>
+     <a href="http://www.johnandrewferguson.com/us%5Fambassadors/" title="View demo"><img width="815" height="440" src="https://github.com/aferguson64/us_diplomacy/blob/master/images/thumbnail.jpg"></a>
 </p>
 
 An interactive world map with U.S. diplomacy metadata for the National Museum of American Diplomacy (ImpactHack 2020)
 
-<a href="http://www.johnandrewferguson.com/us%5Fambassadors/">View the demo</a>
+<a href="http://www.johnandrewferguson.com/us%5Fambassadors/">View demo</a>
 
 ## Getting Started
 
