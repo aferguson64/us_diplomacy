@@ -7,7 +7,8 @@ United States Diplomacy Interactive Map
 
 An interactive world map with U.S. diplomacy metadata for the National Museum of American Diplomacy (ImpactHack 2020)
 
-<a href="http://www.johnandrewferguson.com/us%5Fambassadors/">View demo</a>
+* <a href="http://www.johnandrewferguson.com/us_ambassadors/Ferguson_ImpactHack_Demo.mp4">View video introduction</a>
+* <a href="http://www.johnandrewferguson.com/us%5Fambassadors/">View demo</a>
 
 ## Getting Started
 
