@@ -10,7 +10,7 @@ An interactive world map with U.S. diplomacy metadata for the National Museum of
 * <a href="http://www.johnandrewferguson.com/us_ambassadors/Ferguson_ImpactHack_Demo.mp4">View video introduction</a>
 * <a href="http://www.johnandrewferguson.com/us%5Fambassadors/">View demo</a>
 
-While this is an interactive map task, we wanted to put a human face on U.S. diplomacy by including the ambassador photos. These are the people on the front lines around the world representing our country and we owe it to them to showcase their efforts.
+While this is an interactive map task, we wanted to put a human face on U.S. diplomacy by including the ambassador photos. These are the people on the front lines around the world representing our country.
 
 The Twitter feeds bring the ambassadors to life through photos, videos and writing about current events at their embassy. It is a window into their world and the issues that they face.
 
